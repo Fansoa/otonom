@@ -1,9 +1,11 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "wdio": "wdio run ./wdio.conf.ts"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
@@ -18,9 +20,15 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
+    "@testing-library/webdriverio": "^3.2.1",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
-    "encoding": "^0.1.13"
+    "@wdio/cli": "^8.39.1",
+    "@wdio/local-runner": "^8.39.1",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0",
+    "encoding": "^0.1.13",
+    "ts-node": "^10.9.2"
   }
 }
