@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server.ts";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -12,6 +12,7 @@ export default async function AuthButton() {
   const signOut = async () => {
     "use server";
 
+    // eslint-disable-next-line no-shadow
     const supabase = createClient();
     await supabase.auth.signOut();
     return redirect("/login");

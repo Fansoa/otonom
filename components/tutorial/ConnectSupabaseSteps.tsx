@@ -1,4 +1,4 @@
-import Step from "./Step";
+import Step from "./Step.tsx";
 
 export default function ConnectSupabaseSteps() {
   return (
@@ -35,7 +35,7 @@ export default function ConnectSupabaseSteps() {
             className="font-bold hover:underline text-foreground/80"
             rel="noreferrer"
           >
-            your Supabase project's API Settings
+            your Supabase project&apos;s API Settings
           </a>
           .
         </p>
