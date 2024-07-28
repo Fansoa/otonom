@@ -1,0 +1,31 @@
+{
+  "extends": ["next/core-web-vitals", "eslint-config-airbnb-base", "prettier", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "import/no-extraneous-dependencies": "off", // Disables warning for extraneous dependencies.
+    "@typescript-eslint/no-empty-interface": "error", // Throw error for empty interfaces.
+    "react/prop-types": "warn", // Enables warning for prop types.
+    "@typescript-eslint/no-throw-literal": "warn", // Enables warning for throwing literals.
+    "@typescript-eslint/dot-notation": "off", // Disables dot notation property access.
+    "@typescript-eslint/explicit-function-return-type": "off", // Disables warning for function return types.
+    "@typescript-eslint/no-var-requires": "off", // Disables warning for import/require.
+    "@typescript-eslint/no-unused-vars": "error", // Throw error for unused variables.
+    "no-console": "warn", // Enables warning for console calls.
+    "react-hooks/rules-of-hooks": "error", // Throw error for hook rules.
+    "react-hooks/exhaustive-deps": "off", // Disable exhaustive dependencies.
+    "no-nested-ternary": "error", // Throw error nested ternary operators.
+    "no-restricted-globals": "warn", // Enables warning for global variables.
+    "camelcase": ["warn", { "properties": "never" }], // Enables warning for camelCase variable names.
+    "eqeqeq": ["warn", "always", { "null": "ignore" }], // Enables warning for == and != comparisons.
+    "import/prefer-default-export": "off", // Disables warning for default exports.
+    "no-trailing-spaces": "error", // Throw error for trailing spaces.
+    "no-multiple-empty-lines": "error", // Throw error for multiple empty lines.
+    "react/jsx-filename-extension": "off", // Disables warning for JSX file extensions.
+    "@typescript-eslint/no-use-before-define": "error" // Throw error for declarations before usage.
+  }
+}
