@@ -1,8 +1,10 @@
-// geist/font/sans exist but eslint is triggered: Unable to resolve path to module 'geist/font/sans'.eslintimport/no-unresolved
-// TODO Find why Eslint is triggered
-// eslint-disable-next-line import/no-unresolved
-import { GeistSans } from "geist/font/sans";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const Inter = localFont({
+  src: "../fonts/inter/InterVariable.woff2",
+  variable: "--font-inter",
+});
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en" className={Inter.variable}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           {children}
