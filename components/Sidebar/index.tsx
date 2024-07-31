@@ -15,19 +15,99 @@ import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import {
   Bars3Icon,
   Cog6ToothIcon,
+  Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 import { useState } from "react";
 
-import { SidebarProps } from "@/components/Sidebar/Types.ts";
+import {
+  // Children,
+  // Navigation,
+  NavigationList,
+} from "@/components/Sidebar/Types.ts";
 import OtonomIcon from "@/components/Icons/Otonom.tsx";
+import { usePathname } from "next/navigation";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-const Sidebar = ({ navigation, children }: SidebarProps) => {
+const navigation: NavigationList = [
+  {
+    name: "Modules",
+    icon: Squares2X2Icon,
+    children: [
+      { name: "Mealworm", href: "/modules/mealworm" },
+      { name: "Poultry", href: "/modules/poultry" },
+      { name: "Aquaponics", href: "/modules/aquaponics" },
+    ],
+  },
+  {
+    name: "Menu",
+    icon: Squares2X2Icon,
+    href: "/dashboard/mealworm",
+  },
+];
+const Sidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const pathname = usePathname();
+
+  // navigation must be declare in the scope where navigationWithCurrentProp is needed
+  // navigation must be redeclared at every render to prevent value seted in previous render
+
+  // function isNavigation(
+  //   menuItem: Navigation | Children,
+  // ): menuItem is Navigation {
+  //   return (menuItem as Navigation).icon !== undefined;
+  // }
+
+  // function isActive(menuItem: Children): Children;
+  // function isActive(menuItem: Navigation): Navigation;
+  // function isActive(menuItem: Navigation | Children): Navigation | Children {
+  //   // Je dois trouver un moyen d'indiquer à Typescript à quel type appartient l'argument menuItem
+  //   // Q'est-ce qui distingue un type Navigation d'un type Children
+  //   //
+  //   if (isNavigation(menuItem) && typeof menuItem.href === "string") {
+  //     if (pathname.startsWith(menuItem.href)) {
+  //       return { ...menuItem, current: true };
+  //     }
+  //   }
+  //   if (
+  //     isNavigation(menuItem) &&
+  //     menuItem.children &&
+  //     menuItem.children.length > 0
+  //   ) {
+  //     return {
+  //       ...menuItem,
+  //       children: menuItem?.children.map((menuSubItem) =>
+  //         isActive(menuSubItem),
+  //       ),
+  //     };
+  //   }
+  //   return { ...menuItem };
+  // }
+
+  function isActive(menuItem) {
+    if (menuItem.href) {
+      if (pathname.startsWith(menuItem.href)) {
+        return { ...menuItem, current: true };
+      }
+    }
+    if (menuItem.children) {
+      return {
+        ...menuItem,
+        children: menuItem?.children.map((menuSubItem) =>
+          isActive(menuSubItem),
+        ),
+      };
+    }
+    return { ...menuItem };
+  }
+
+  const navigationWithCurrentProp = navigation.map((menuItem) =>
+    isActive(menuItem),
+  );
 
   return (
     <>
@@ -79,7 +159,7 @@ const Sidebar = ({ navigation, children }: SidebarProps) => {
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" className="-mx-2 space-y-1">
-                        {navigation.map((item) => (
+                        {navigationWithCurrentProp.map((item) => (
                           <li key={item.name}>
                             {!item.children ? (
                               <a
@@ -210,7 +290,7 @@ const Sidebar = ({ navigation, children }: SidebarProps) => {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navigationWithCurrentProp.map((item) => (
                       <li key={item.name}>
                         {!item.children ? (
                           <a
@@ -366,10 +446,6 @@ const Sidebar = ({ navigation, children }: SidebarProps) => {
               </div>
             </div>
           </div>
-
-          <main>
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
-          </main>
         </div>
       </div>
     </>
