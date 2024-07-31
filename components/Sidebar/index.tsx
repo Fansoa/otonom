@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 
 import OtonomIcon from "@/components/Icons/Otonom.tsx";
-import useNavigation from "@/components/Sidebar/hooks/useNavigation.ts";
+import useNavigation from "@/components/Sidebar/hooks/useNavigation/index.ts";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
