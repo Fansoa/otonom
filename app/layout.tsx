@@ -22,11 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={Inter.variable}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-        </main>
+    <html lang="en" className={`${Inter.variable} h-full bg-white`}>
+      <body className="bg-background text-foreground h-full">
+        <main>{children}</main>
       </body>
     </html>
   );
