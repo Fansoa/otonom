@@ -19,6 +19,7 @@ const preview: Preview = {
       },
     },
   },
+  tags: ['autodocs'],
   decorators: [
     (Story) => {
       useEffect(() => {
