@@ -1,3 +1,5 @@
+"use client";
+
 import LabelTextInput from "@/components/LabelTextInput/index.tsx";
 import { LabelTextInputControlledProps } from "@/components/LabelTextInputControlled/types.ts";
 import { Controller, useFormContext } from "react-hook-form";
