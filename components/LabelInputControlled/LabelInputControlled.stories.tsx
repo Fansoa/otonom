@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import LabelTextInputControlled from "@/components/LabelTextInputControlled/index.tsx";
+import LabelTextInputControlled from "@/components/LabelInputControlled/index.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";

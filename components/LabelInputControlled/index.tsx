@@ -1,13 +1,14 @@
 "use client";
 
-import LabelTextInput from "@/components/LabelTextInput/index.tsx";
-import { LabelTextInputControlledProps } from "@/components/LabelTextInputControlled/types.ts";
+import LabelTextInput from "@/components/LabelInput/index.tsx";
+import { LabelTextInputControlledProps } from "@/components/LabelInputControlled/types.ts";
 import { Controller, useFormContext } from "react-hook-form";
 
-const LabelTextInputControlled = ({
+const LabelInputControlled = ({
   className,
   id,
   name,
+  inputType,
   label,
   placeholder,
   ...props
@@ -24,6 +25,7 @@ const LabelTextInputControlled = ({
             className={className}
             id={id}
             name={name}
+            inputType={inputType}
             label={label}
             placeholder={placeholder}
             onChange={onChange}
@@ -37,4 +39,4 @@ const LabelTextInputControlled = ({
   );
 };
 
-export default LabelTextInputControlled;
+export default LabelInputControlled;
