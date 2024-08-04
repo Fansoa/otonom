@@ -1,6 +1,6 @@
 "use client";
 
-import LabelTextInput from "@/components/LabelInput/index.tsx";
+import LabelInput from "@/components/LabelInput/index.tsx";
 import { LabelInputControlledProps } from "@/components/LabelInputControlled/types.ts";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -21,7 +21,7 @@ const LabelInputControlled = ({
       control={control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
-          <LabelTextInput
+          <LabelInput
             className={className}
             id={id}
             name={name}
