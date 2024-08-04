@@ -28,7 +28,7 @@ const LabelInputControlled = ({
             label={label}
             placeholder={placeholder}
             onChange={onChange}
-            value={value}
+            value={value || ""}
             errorMessage={error?.message}
             {...props}
           />
