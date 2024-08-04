@@ -24,7 +24,6 @@ const LabelInputControlled = ({
           <LabelInput
             className={className}
             id={id}
-            name={name}
             inputType={inputType}
             label={label}
             placeholder={placeholder}
