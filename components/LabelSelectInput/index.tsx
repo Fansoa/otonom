@@ -63,8 +63,9 @@ const LabelSelectInput = ({
           id={id}
           name={name}
           options={options}
-          onChange={onChange}
-          value={value}
+          // TODO FIND TS SOLUTION
+          onChange={(option) => onChange(option.value)}
+          value={options.find((option) => option.value === value)}
           {...props}
         />
       </div>
