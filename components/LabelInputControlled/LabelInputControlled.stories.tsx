@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import LabelTextInputControlled from "@/components/LabelInputControlled/index.tsx";
+import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,8 +25,8 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
   return <FormProvider {...methods}>{children}</FormProvider>;
 };
 
-const meta: Meta<typeof LabelTextInputControlled> = {
-  component: LabelTextInputControlled,
+const meta: Meta<typeof LabelInputControlled> = {
+  component: LabelInputControlled,
   decorators: [
     (Story) => (
       <ContextProvider>
@@ -37,7 +37,7 @@ const meta: Meta<typeof LabelTextInputControlled> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof LabelTextInputControlled>;
+type Story = StoryObj<typeof LabelInputControlled>;
 
 export const Story: Story = {
   name: "Default",
