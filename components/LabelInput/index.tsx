@@ -1,6 +1,6 @@
-import { LabelTextInputProps } from "@/components/LabelInput/types.ts";
+import { LabelInputProps } from "@/components/LabelInput/types.ts";
 
-const LabelTextInput = ({
+const LabelInput = ({
   className,
   id,
   name,
@@ -11,7 +11,7 @@ const LabelTextInput = ({
   onChange,
   value,
   ...props
-}: LabelTextInputProps) => {
+}: LabelInputProps) => {
   return (
     <div className={className}>
       <label
@@ -36,4 +36,4 @@ const LabelTextInput = ({
   );
 };
 
-export default LabelTextInput;
+export default LabelInput;

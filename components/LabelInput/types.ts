@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react";
 
-export type LabelTextInputProps = {
+export type LabelInputProps = {
   className?: string;
   id?: string;
   name?: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import LabelTextInput from "@/components/LabelInput/index.tsx";
-import { LabelTextInputControlledProps } from "@/components/LabelInputControlled/types.ts";
+import { LabelInputControlledProps } from "@/components/LabelInputControlled/types.ts";
 import { Controller, useFormContext } from "react-hook-form";
 
 const LabelInputControlled = ({
@@ -12,7 +12,7 @@ const LabelInputControlled = ({
   label,
   placeholder,
   ...props
-}: LabelTextInputControlledProps) => {
+}: LabelInputControlledProps) => {
   const { control } = useFormContext();
 
   return (

@@ -1,4 +1,4 @@
-export type LabelTextInputControlledProps = {
+export type LabelInputControlledProps = {
   className?: string;
   id?: string;
   name: string;
