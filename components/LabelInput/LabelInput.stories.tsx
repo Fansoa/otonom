@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import LabelTextInput from "@/components/LabelTextInput/index.tsx";
+import LabelInput from "@/components/LabelInput/index.tsx";
 
-const meta: Meta<typeof LabelTextInput> = {
-  component: LabelTextInput,
+const meta: Meta<typeof LabelInput> = {
+  component: LabelInput,
 };
 
 export default meta;
-type Story = StoryObj<typeof LabelTextInput>;
+type Story = StoryObj<typeof LabelInput>;
 
 export const Story: Story = {
   name: "Default",

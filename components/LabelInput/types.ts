@@ -1,12 +1,13 @@
 import { ChangeEventHandler } from "react";
 
-export type LabelTextInputProps = {
+export type LabelInputProps = {
   className?: string;
   id?: string;
   name?: string;
+  inputType?: "text" | "number";
   label?: string;
   placeholder?: string;
   errorMessage?: string;
   onChange?: ChangeEventHandler;
-  value?: string;
+  value?: string | number;
 };
