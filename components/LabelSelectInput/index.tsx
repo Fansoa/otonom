@@ -4,6 +4,7 @@ import getBorderColorbyState from "@/components/LabelSelectInput/methods/getColo
 import getOutlineByState from "@/components/LabelSelectInput/methods/getOutlineByState/index.ts";
 import { LabelSelectInputProps } from "@/components/LabelSelectInput/types.ts";
 import Select from "react-select";
+import { useId } from "react";
 
 const LabelSelectInput = ({
   className,
@@ -26,6 +27,7 @@ const LabelSelectInput = ({
       </label>
       <div className="mt-2">
         <Select
+          instanceId={useId()}
           styles={{
             container: (baseStyles) => ({
               ...baseStyles,
