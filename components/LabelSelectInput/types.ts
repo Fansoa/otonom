@@ -9,7 +9,7 @@ export type LabelSelectInputProps = {
   name?: string;
   label?: string;
   errorMessage?: string;
-  onChange: () => void;
+  onChange?: () => void;
   value?: SelectOption;
   options: SelectOption[];
 };
