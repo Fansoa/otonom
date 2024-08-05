@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${Inter.variable} h-full bg-white`}>
-      <body className="bg-background text-foreground h-full">
+      <body className="h-full">
         <main>{children}</main>
       </body>
     </html>
