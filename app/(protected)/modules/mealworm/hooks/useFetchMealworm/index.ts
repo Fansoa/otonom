@@ -1,23 +1,26 @@
+"use client";
+
+import { getMealworms } from "@/services/mealworm/index.ts";
 import { useEffect, useState } from "react";
 
-const useFetchMealworm = (supabaseClient, user, stateToTriggeringEffect) => {
+const useFetchMealworm = ({ supabaseClient, user }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     if (supabaseClient && user) {
-      const getData = async () => {
-        const response = await supabaseClient
-          .from("rack")
-          .select("*, crate(*)")
-          .eq("user_id", user.id)
-          .abortSignal(AbortSignal.timeout(3000));
-        setData(response.data);
-      };
-      getData();
+      getMealworms({ supabaseClient, userId: user.id }).then((res) => {
+        if (res.error) {
+          console.error(res.error);
+        }
+        if (res.data) {
+          console.log(res.data);
+          setData(res.data);
+        }
+      });
     }
-  }, [supabaseClient, user, stateToTriggeringEffect]);
+  }, [supabaseClient, user]);
 
-  return { data };
+  return { data, setData };
 };
 
 export default useFetchMealworm;

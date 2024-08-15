@@ -6,7 +6,6 @@ type Crate = {
 };
 
 export type CrateProps = {
-  crate: Crate;
   onClick: () => void;
   rackId: string;
   crateId: string;

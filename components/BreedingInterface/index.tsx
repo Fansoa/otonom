@@ -1,30 +1,22 @@
 "use client";
 
-import useRackForm from "@/app/(protected)/modules/mealworm/hooks/useRackForm";
-import Rack from "@/components/BreedingInterface/components/Rack/index.tsx";
-import RackSkeleton from "@/components/BreedingInterface/components/Rack/skeleton";
-import { BreedingInterfaceProps } from "@/components/BreedingInterface/types.ts";
-import Drawer from "@/components/Drawer";
-import LabelInputControlled from "@/components/LabelInputControlled";
-import useAuth from "@/hooks/useAuth";
 import { memo, useState } from "react";
 import { FormProvider } from "react-hook-form";
 
-const mockData = [
-  {
-    rackId: 1,
-    crates: [{ crateId: 1 }, { crateId: 2 }, { crateId: 3 }, { crateId: 4 }],
-  },
-  {
-    rackId: 2,
-    crates: [{ crateId: 5 }, { crateId: 6 }, { crateId: 7 }],
-  },
-];
+import useAuth from "@/hooks/useAuth/index.ts";
+import useRackForm from "@/app/(protected)/modules/mealworm/hooks/useRackForm/index.ts";
+import { useDataDispatchContext } from "@/app/(protected)/modules/mealworm/contexts/DataDispatchContext/index.tsx";
+
+import Rack from "@/components/BreedingInterface/components/Rack/index.tsx";
+import RackSkeleton from "@/components/BreedingInterface/components/Rack/skeleton/index.tsx";
+import Drawer from "@/components/Drawer/index.tsx";
+import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
 
 // eslint-disable-next-line react/display-name
-const BreedingInterface = memo(({ data }: BreedingInterfaceProps) => {
+const BreedingInterface = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, supabaseClient } = useAuth();
+  const { data } = useDataDispatchContext();
   const { methods, onSubmit } = useRackForm({
     user,
     supabaseClient,
@@ -35,10 +27,9 @@ const BreedingInterface = memo(({ data }: BreedingInterfaceProps) => {
     return (
       <div className="h-96 p-4 bg-slate-100">
         <div className="h-full flex gap-1">
-          <RackSkeleton />
-          <RackSkeleton />
-          <RackSkeleton />
-          <RackSkeleton />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <RackSkeleton key={`RackSkeleton-${i}`} />
+          ))}
         </div>
       </div>
     );

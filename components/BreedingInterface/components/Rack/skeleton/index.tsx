@@ -1,3 +1,5 @@
+"use client";
+
 const RackSkeleton = () => {
   return (
     <div

@@ -1,11 +1,11 @@
 "use client";
 
 import useAuth from "@/hooks/useAuth/index.ts";
-import { createContext, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 
 const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { user, supabaseClient } = useAuth();
 
   return (

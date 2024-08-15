@@ -1,4 +1,7 @@
+"use client";
+
 import { useMealworm } from "@/app/(protected)/modules/mealworm/contexts/MealwormContext/index.tsx";
+
 import { CrateProps } from "@/components/BreedingInterface/types.ts";
 
 const Crate = ({ onClick, rackId, crateId }: CrateProps) => {

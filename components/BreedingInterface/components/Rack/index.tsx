@@ -1,15 +1,20 @@
+"use client";
+
+import { useState } from "react";
+import { FormProvider } from "react-hook-form";
+
 import {
   useMealworm,
   useMealwormDispatch,
 } from "@/app/(protected)/modules/mealworm/contexts/MealwormContext/index.tsx";
 import useCrateForm from "@/app/(protected)/modules/mealworm/hooks/useCrateForm/index.ts";
+import { useAuthContext } from "@/Contexts/AuthContext/index.tsx";
+
 import Crate from "@/components/BreedingInterface/components/Rack/components/Crate/index.tsx";
-import { RackProps } from "@/components/BreedingInterface/types.ts";
 import Drawer from "@/components/Drawer/index.tsx";
 import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
-import { useAuthContext } from "@/Contexts/AuthContext/index.tsx";
-import { useState } from "react";
-import { FormProvider } from "react-hook-form";
+
+import { RackProps } from "@/components/BreedingInterface/types.ts";
 
 const Rack = ({ rack }: RackProps) => {
   const { user, supabaseClient } = useAuthContext();
@@ -33,7 +38,7 @@ const Rack = ({ rack }: RackProps) => {
         onClick={() => setSelectedItem({ rackId: rack.id })}
         className={`w-28 flex flex-col-reverse gap-1 h-full ${isActive ? "bg-slate-400" : "bg-slate-200"} hover:outline-1 hover:outline hover:outline-slate-400 p-2`}
       >
-        {rack.crate.map((crate) => (
+        {rack?.crate?.map((crate) => (
           <Crate
             key={`crate-${crate.id}`}
             rackId={rack.id}
