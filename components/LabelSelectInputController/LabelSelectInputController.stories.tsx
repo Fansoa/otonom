@@ -6,7 +6,8 @@ import { FormProvider, useForm } from "react-hook-form";
 const ContextProvider = () => {
   const methods = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  // eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => console.log(data);
   return (
     <FormProvider {...methods}>
       <LabelSelectInputController

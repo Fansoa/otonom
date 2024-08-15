@@ -1,7 +1,26 @@
-import React from "react";
+"use client";
+
+import useAuth from "@/hooks/useAuth/index.ts";
+import useRackList from "@/app/(protected)/modules/mealworm/hooks/useRackList/index.ts";
+
+import { RackListProvider } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
+import { SelectedItemAndSelectedItemDispatchProvider } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
+
+import BreedingInterface from "@/app/(protected)/modules/mealworm/components/BreedingInterface/index.tsx";
 
 const Mealworm = () => {
-  return <div>Mealworm</div>;
+  const { supabaseClient, user } = useAuth();
+  const { rackList, setRackList } = useRackList({ supabaseClient, user });
+
+  return (
+    <>
+      <SelectedItemAndSelectedItemDispatchProvider>
+        <RackListProvider defaultValue={{ rackList, setRackList }}>
+          <BreedingInterface />
+        </RackListProvider>
+      </SelectedItemAndSelectedItemDispatchProvider>
+    </>
+  );
 };
 
 export default Mealworm;
