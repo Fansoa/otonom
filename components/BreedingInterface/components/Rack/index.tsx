@@ -17,14 +17,13 @@ import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
 import { RackProps } from "@/components/BreedingInterface/types.ts";
 
 const Rack = ({ rack }: RackProps) => {
-  const { user, supabaseClient } = useAuthContext();
+  const { supabaseClient } = useAuthContext();
   const setSelectedItem = useMealwormDispatch();
   const selectedItem = useMealworm();
   const [isOpen, setIsOpen] = useState(false);
 
   const { onSubmit, methods } = useCrateForm({
     rack_id: rack.id,
-    user,
     supabaseClient,
     setIsOpen,
   });

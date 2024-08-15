@@ -1,8 +1,4 @@
-import { useMealworm } from "@/app/(protected)/modules/mealworm/contexts/MealwormContext/index.tsx";
-
 const ActionButtons = () => {
-  const toto = useMealworm();
-  // console.log("🚀 ~ ActionButtons ~ toto:", toto);
   // ActionButtons est un composant contenant les différents boutons permettant d'intéragir avec
   // un rack ou un crate
   // Les actions sont différentes en fonction que ce soit un rack ou un crate séléctionné
