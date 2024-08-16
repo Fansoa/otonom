@@ -7,19 +7,19 @@ import { RackListProvider } from "@/app/(protected)/modules/mealworm/contexts/Ra
 import { SelectedItemAndSelectedItemDispatchProvider } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
 
 import BreedingInterface from "@/app/(protected)/modules/mealworm/components/BreedingInterface/index.tsx";
+import DataDisplay from "@/app/(protected)/modules/mealworm/components/DataDisplay/index.tsx";
 
 const Mealworm = () => {
   const { supabaseClient, user } = useAuth();
   const { rackList, setRackList } = useRackList({ supabaseClient, user });
 
   return (
-    <>
-      <SelectedItemAndSelectedItemDispatchProvider>
-        <RackListProvider defaultValue={{ rackList, setRackList }}>
-          <BreedingInterface />
-        </RackListProvider>
-      </SelectedItemAndSelectedItemDispatchProvider>
-    </>
+    <SelectedItemAndSelectedItemDispatchProvider>
+      <RackListProvider defaultValue={{ rackList, setRackList }}>
+        <BreedingInterface />
+        <DataDisplay />
+      </RackListProvider>
+    </SelectedItemAndSelectedItemDispatchProvider>
   );
 };
 
