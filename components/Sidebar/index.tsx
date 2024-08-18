@@ -20,7 +20,7 @@ import {
 
 import { useState } from "react";
 
-import OtonomIcon from "@/components/Icons/Otonom.tsx";
+import OtonomIcon from "@/components/Icons/OtonomIcon/index.tsx";
 import useNavigation from "@/components/Sidebar/hooks/useNavigation/index.ts";
 
 function classNames(...classes: string[]) {

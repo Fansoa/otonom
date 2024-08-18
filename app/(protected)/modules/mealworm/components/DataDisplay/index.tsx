@@ -3,7 +3,6 @@ import { useSelectedItemContext } from "@/app/(protected)/modules/mealworm/conte
 import {
   findCrateById,
   findRackById,
-  getAllFormattedRackActions,
   getFormattedCrateActions,
   getSelectedItemType,
 } from "@/app/(protected)/modules/mealworm/utils/methods/index.ts";
@@ -20,7 +19,9 @@ const DataDisplay = () => {
     const rack = findRackById({ rackList, rackId: selectedItem.rackId });
 
     if (selectedItemType === "rack") {
-      const formattedCrateActionsOfRack = getAllFormattedRackActions(rack);
+      const formattedCrateActionsOfRack = rack.crate.map((crate) =>
+        getFormattedCrateActions(crate),
+      );
       const unifiedActionsList = formattedCrateActionsOfRack.reduce(
         (acc, curr) => [...acc, ...curr],
       );
@@ -35,6 +36,11 @@ const DataDisplay = () => {
       return <TableList itemList={itemList} />;
     }
   }
+  itemList = rackList
+    ?.map((rack) => rack.crate.map((crate) => getFormattedCrateActions(crate)))
+    .reduce((acc, curr) => [...acc, ...curr])
+    .reduce((acc, curr) => [...acc, ...curr]);
+
   return <TableList itemList={itemList} />;
 };
 

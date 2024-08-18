@@ -12,8 +12,9 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "Otonom",
+  description:
+    "Plateforme complète de gestion pour les particuliers souhaitant gagner en autonomie. Explorez des modules dédiés à la culture d'un potager, l'élevage d'insectes, et la gestion d'un poulailler. Prenez le contrôle de votre autosuffisance en toute simplicité.",
 };
 
 export default function RootLayout({

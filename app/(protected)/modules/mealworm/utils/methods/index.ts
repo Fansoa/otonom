@@ -3,15 +3,11 @@ export const getFormattedAction = ({ crate, action }) => ({
   name: crate.name,
   action: action.actionType.name,
   weight: action.weight,
-  created_at: action.created_at,
+  created_at: new Date(action.created_at).toLocaleString(),
 });
 
 export const getFormattedCrateActions = (crate) => {
   return crate?.action.map((action) => getFormattedAction({ crate, action }));
-};
-
-export const getAllFormattedRackActions = (rack) => {
-  return rack.crate.map((crate) => getFormattedCrateActions(crate));
 };
 
 export const getSelectedItemType = (selectedItem) => {

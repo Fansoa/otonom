@@ -38,8 +38,8 @@ const BreedingInterface = memo(() => {
   return (
     <>
       <div className="h-96 p-4 bg-slate-100">
-        <div className="h-full flex gap-1">
-          {rackList && (
+        {rackList && (
+          <div className="h-full flex gap-1">
             <>
               {rackList.map((rack) => (
                 <Rack key={`rack-${rack.id}`} rack={rack} />
@@ -50,11 +50,11 @@ const BreedingInterface = memo(() => {
                   setIsOpen((prev) => !prev);
                 }}
               >
-                Créer un rack
+                Add Rack
               </button>
             </>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <Drawer panelTitle="Créer un rack" open={isOpen} setOpen={setIsOpen}>
