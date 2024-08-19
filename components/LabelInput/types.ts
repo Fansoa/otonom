@@ -1,10 +1,10 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ComponentProps } from "react";
 
-export type LabelInputProps = {
+export type LabelInputProps = ComponentProps<"input"> & {
   className?: string;
   id?: string;
   name?: string;
-  inputType?: "text" | "number";
+  inputType?: "text" | "number" | "password" | "email";
   label?: string;
   placeholder?: string;
   errorMessage?: string;
