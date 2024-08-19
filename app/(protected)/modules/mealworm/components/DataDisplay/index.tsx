@@ -61,7 +61,11 @@ const DataDisplay = () => {
     }
   }
   itemList = rackList
-    ?.map((rack) => rack.crate.map((crate) => getFormattedCrateActions(crate)))
+    ?.map((rack) =>
+      rack.crate
+        ? rack.crate.map((crate) => getFormattedCrateActions(crate))
+        : [[]],
+    )
     .reduce((acc, curr) => [...acc, ...curr])
     .reduce((acc, curr) => [...acc, ...curr]);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useState } from "react";
-import { FormProvider } from "react-hook-form";
+import { Form, FormProvider } from "react-hook-form";
 
 import useAuth from "@/hooks/useAuth/index.ts";
 import { useRackListContext } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
@@ -57,20 +57,22 @@ const BreedingInterface = memo(() => {
         )}
       </div>
 
-      <Drawer panelTitle="Créer un rack" open={isOpen} setOpen={setIsOpen}>
+      <Drawer panelTitle="Add Rack" open={isOpen} setOpen={setIsOpen}>
         <FormProvider {...methods}>
-          <LabelInputControlled
-            name="name"
-            label="Nom du rack"
-            inputType="text"
-          />
-          <button
-            type="submit"
-            onClick={onSubmit}
-            className="mt-4 rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-          >
-            Submit
-          </button>
+          <Form>
+            <LabelInputControlled
+              name="name"
+              label="Rack name"
+              inputType="text"
+            />
+            <button
+              type="submit"
+              onClick={onSubmit}
+              className="mt-4 rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+            >
+              Submit
+            </button>
+          </Form>
         </FormProvider>
       </Drawer>
     </>
