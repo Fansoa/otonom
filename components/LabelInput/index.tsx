@@ -15,7 +15,7 @@ const LabelInput = ({
   return (
     <div className={className}>
       <label
-        htmlFor={name}
+        htmlFor={id}
         className={`block text-sm font-medium leading-6 ${errorMessage ? "text-red-500" : "text-gray-900"}`}
       >
         {label}
