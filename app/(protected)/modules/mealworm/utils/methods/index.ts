@@ -7,6 +7,9 @@ export const getFormattedAction = ({ crate, action }) => ({
 });
 
 export const getFormattedCrateActions = (crate) => {
+  if (!crate.action) {
+    return [];
+  }
   return crate?.action.map((action) => getFormattedAction({ crate, action }));
 };
 

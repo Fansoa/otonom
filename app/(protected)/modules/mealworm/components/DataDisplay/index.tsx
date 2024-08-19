@@ -19,13 +19,30 @@ const DataDisplay = () => {
     const rack = findRackById({ rackList, rackId: selectedItem.rackId });
 
     if (selectedItemType === "rack") {
-      const formattedCrateActionsOfRack = rack.crate.map((crate) =>
-        getFormattedCrateActions(crate),
+      const formattedCrateActionsOfRack = rack.crate
+        ? rack.crate.map((crate) => getFormattedCrateActions(crate))
+        : [[]];
+
+      const rackIsNotEmpty = formattedCrateActionsOfRack.length > 0;
+
+      let unifiedActionsList;
+
+      if (rackIsNotEmpty) {
+        unifiedActionsList = formattedCrateActionsOfRack.reduce((acc, curr) => [
+          ...acc,
+          ...curr,
+        ]);
+      } else {
+        unifiedActionsList = formattedCrateActionsOfRack;
+      }
+      return (
+        <TableList
+          itemList={unifiedActionsList}
+          title="Action list"
+          description={`A list of all actions carried out on crates of rack: ${rack.name}`}
+          messageIfNoItems={`${rack.name} does not contain any actions`}
+        />
       );
-      const unifiedActionsList = formattedCrateActionsOfRack.reduce(
-        (acc, curr) => [...acc, ...curr],
-      );
-      return <TableList itemList={unifiedActionsList} />;
     }
     if (selectedItemType === "crate") {
       const crate = findCrateById({
@@ -33,7 +50,14 @@ const DataDisplay = () => {
         crateId: selectedItem.crateId,
       });
       itemList = getFormattedCrateActions(crate);
-      return <TableList itemList={itemList} />;
+      return (
+        <TableList
+          itemList={itemList}
+          title="Action list"
+          description={`A list of all actions carried out on the crate: ${crate.name}`}
+          messageIfNoItems="The selected element does not contain any actions"
+        />
+      );
     }
   }
   itemList = rackList
@@ -41,7 +65,14 @@ const DataDisplay = () => {
     .reduce((acc, curr) => [...acc, ...curr])
     .reduce((acc, curr) => [...acc, ...curr]);
 
-  return <TableList itemList={itemList} />;
+  return (
+    <TableList
+      itemList={itemList}
+      title="Action list"
+      description="A list of all actions carried out"
+      messageIfNoItems="The selected element does not contain any actions"
+    />
+  );
 };
 
 export default DataDisplay;
