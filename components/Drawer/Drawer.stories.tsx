@@ -15,7 +15,7 @@ const DrawerStorybookContext = ({ panelTitle }: DrawerProps) => {
       >
         Show Drawer
       </button>
-      <Drawer panelTitle={panelTitle} open={toggle} setOpen={setToggle} />
+      <Drawer panelTitle={panelTitle} isOpen={toggle} setIsOpen={setToggle} />
     </>
   );
 };
@@ -31,8 +31,8 @@ export const Story: Story = {
   name: "Default",
   args: {
     panelTitle: "Panel Title",
-    setOpen: () => null,
-    open: false,
+    setIsOpen: () => null,
+    isOpen: false,
     children: <div></div>,
   },
 };

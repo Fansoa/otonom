@@ -57,7 +57,7 @@ const BreedingInterface = memo(() => {
         </div>
       </div>
 
-      <Drawer panelTitle="Créer un rack" open={isOpen} setOpen={setIsOpen}>
+      <Drawer panelTitle="Créer un rack" isOpen={isOpen} setIsOpen={setIsOpen}>
         <FormProvider {...methods}>
           <LabelInputControlled
             name="name"
