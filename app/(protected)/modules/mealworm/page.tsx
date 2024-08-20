@@ -30,13 +30,11 @@ const Mealworm = () => {
   const { rackList, setRackList } = useRackList({ supabaseClient, user });
 
   return (
-    <>
-      <SelectedItemAndSelectedItemDispatchProvider>
-        <RackListProvider defaultValue={{ rackList, setRackList }}>
-          <BreedingInterface />
-        </RackListProvider>
-      </SelectedItemAndSelectedItemDispatchProvider>
-    </>
+    <SelectedItemAndSelectedItemDispatchProvider>
+      <RackListProvider defaultValue={{ rackList, setRackList }}>
+        <BreedingInterface />
+      </RackListProvider>
+    </SelectedItemAndSelectedItemDispatchProvider>
   );
 };
 
