@@ -1,7 +1,7 @@
 export const getRackList = async ({ supabaseClient, userId }) => {
   const response = await supabaseClient
     .from("rack")
-    .select("*, crate(*)")
+    .select("*, crate(*, stage(*), action(*, actionType(*)))")
     .eq("user_id", userId)
     .abortSignal(AbortSignal.timeout(3000));
 
