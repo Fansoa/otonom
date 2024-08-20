@@ -9,6 +9,7 @@ import { RackListProvider } from "@/app/(protected)/modules/mealworm/contexts/Ra
 import { SelectedItemAndSelectedItemDispatchProvider } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
 
 import Spinner from "@/components/Spinner/index.tsx";
+import DataDisplay from "@/app/(protected)/modules/mealworm/components/DataDisplay";
 
 const BreedingInterface = dynamic(
   () =>
@@ -32,7 +33,10 @@ const Mealworm = () => {
   return (
     <SelectedItemAndSelectedItemDispatchProvider>
       <RackListProvider defaultValue={{ rackList, setRackList }}>
-        <BreedingInterface />
+        <div className="flex flex-col gap-4">
+          <BreedingInterface />
+          <DataDisplay />
+        </div>
       </RackListProvider>
     </SelectedItemAndSelectedItemDispatchProvider>
   );
