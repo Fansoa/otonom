@@ -16,8 +16,8 @@ const Crate = ({ onClick, rackId, crateId }: CrateProps) => {
         e.stopPropagation();
         onClick();
       }}
-      className={`w-full h-8 ${isActive ? "bg-slate-400" : "bg-slate-300"} hover:outline-1 hover:outline hover:outline-slate-400`}
-    ></button>
+      className={`w-full h-8 ${isActive ? "bg-slate-400" : "bg-slate-300"} hover:outline-1 hover:outline hover:outline-slate-500`}
+    />
   );
 };
 
