@@ -59,7 +59,11 @@ const Rack = ({ rack }: RackProps) => {
         </button>
       </div>
 
-      <Drawer panelTitle="Créer une caisse" open={isOpen} setOpen={setIsOpen}>
+      <Drawer
+        panelTitle="Créer une caisse"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      >
         <FormProvider {...methods}>
           <LabelInputControlled
             name="rack_id"

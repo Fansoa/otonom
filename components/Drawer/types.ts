@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 
 type DrawerProps = {
   panelTitle: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
   children?: ReactNode;
 };
 
