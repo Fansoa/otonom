@@ -34,7 +34,7 @@ const Rack = ({ rack }: RackProps) => {
         tabIndex={0}
         role="button"
         onClick={() => setSelectedItem({ rackId: rack.id })}
-        className={`w-28 flex flex-col-reverse gap-1 h-full ${isActive ? "bg-slate-400" : "bg-slate-200"} hover:outline-1 hover:outline hover:outline-slate-400 p-2`}
+        className={`w-28 flex flex-col-reverse gap-1 h-full ${isActive ? "bg-slate-400" : "bg-slate-200"} hover:outline-1 hover:outline hover:outline-slate-500 p-2`}
       >
         {rack?.crate?.map((crate) => (
           <Crate
@@ -48,13 +48,13 @@ const Rack = ({ rack }: RackProps) => {
         ))}
         <button
           type="button"
-          className="bg-slate-100 border-2 border-dashed rounded-md border-slate-400 hover:bg-slate-50 text-slate-800"
+          className="py-2 bg-slate-100 border-2 border-dashed rounded-md border-slate-400 hover:bg-slate-50 text-slate-800"
           onClick={async (e) => {
             e.stopPropagation();
             setIsOpen((prev) => !prev);
           }}
         >
-          Créer une caisse
+          Add Crate
         </button>
       </div>
 
