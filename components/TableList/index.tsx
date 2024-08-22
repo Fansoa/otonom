@@ -67,13 +67,12 @@ export default function TableList({
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                {messageIfItemListIsEmpty}
-              </td>
-            </tr>
+            <tr />
           </tbody>
         </table>
+        <p className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+          {messageIfItemListIsEmpty}
+        </p>
       </TableLayout>
     );
   }
