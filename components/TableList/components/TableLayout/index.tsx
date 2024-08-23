@@ -1,6 +1,13 @@
 import { TableLayoutProps } from "@/components/TableList/components/TableLayout/types.ts";
 
-const TableLayout = ({ title, description, children }: TableLayoutProps) => {
+const TableLayout = ({
+  title,
+  description,
+  renderFeedingFormButton,
+  renderHarvestFormButton,
+  renderTransferFormButton,
+  children,
+}: TableLayoutProps) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -10,14 +17,9 @@ const TableLayout = ({ title, description, children }: TableLayoutProps) => {
           </h1>
           <p className="mt-2 text-sm text-gray-700">{description}</p>
         </div>
-        {/* <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <button
-        type="button"
-        className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      >
-        Add user
-      </button>
-    </div> */}
+        <div className="flex gap-2 mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+          {renderFeedingFormButton && renderFeedingFormButton}
+        </div>
       </div>
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
