@@ -3,13 +3,12 @@
 import dynamic from "next/dynamic";
 
 import useAuth from "@/hooks/useAuth/index.ts";
-import useRackList from "@/app/(protected)/modules/mealworm/hooks/useRackList/index.ts";
-
-import { RackListProvider } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
-import { SelectedItemAndSelectedItemDispatchProvider } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
 
 import Spinner from "@/components/Spinner/index.tsx";
 import ActionInterface from "@/app/(protected)/modules/mealworm/components/ActionInterface/index.tsx";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
+import { useEffect } from "react";
+import { getRackList } from "@/services/mealworm/index.ts";
 
 const BreedingInterface = dynamic(
   () =>
@@ -28,17 +27,27 @@ const BreedingInterface = dynamic(
 
 const Mealworm = () => {
   const { supabaseClient, user } = useAuth();
-  const { rackList, setRackList } = useRackList({ supabaseClient, user });
+  const { fillMealwormStore } = useMealwormStore((state) => state);
+
+  useEffect(() => {
+    if (supabaseClient && user) {
+      getRackList({ supabaseClient, userId: user.id }).then((res) => {
+        if (res.error) {
+          console.error(res.error);
+        }
+        if (res.data) {
+          fillMealwormStore(res.data);
+          console.log(res.data);
+        }
+      });
+    }
+  }, [supabaseClient, user]);
 
   return (
-    <SelectedItemAndSelectedItemDispatchProvider>
-      <RackListProvider defaultValue={{ rackList, setRackList }}>
-        <div className="flex flex-col gap-4">
-          <BreedingInterface />
-          <ActionInterface />
-        </div>
-      </RackListProvider>
-    </SelectedItemAndSelectedItemDispatchProvider>
+    <div className="flex flex-col gap-4">
+      <BreedingInterface />
+      <ActionInterface />
+    </div>
   );
 };
 

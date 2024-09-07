@@ -1,5 +1,4 @@
-import { useRackListContext } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
-import { useSelectedItemContext } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
+"use client";
 
 import TableList from "@/components/TableList/index.tsx";
 
@@ -7,11 +6,10 @@ import {
   getFormattedCrateActions,
   getSelectedItemType,
 } from "@/app/(protected)/modules/mealworm/utils/methods/index.ts";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 const ActionInterface = () => {
-  const { rackList } = useRackListContext();
-
-  const selectedItem = useSelectedItemContext();
+  const { rackList, selectedItem } = useMealwormStore((state) => state);
 
   const selectedItemType = getSelectedItemType(selectedItem);
 
@@ -19,9 +17,9 @@ const ActionInterface = () => {
     const rack = rackList.find((rack) => rack.id === selectedItem.rackId);
 
     if (selectedItemType === "rack") {
-      const formattedCrateActionsOfRack = rack.crate
+      const formattedCrateActionsOfRack = rack?.crate
         ? rack.crate.map(
-            (crate) => crate.action && getFormattedCrateActions(crate),
+            (crate) => (crate.action && getFormattedCrateActions(crate)) || [],
           )
         : [[]];
 
@@ -57,9 +55,14 @@ const ActionInterface = () => {
 
   const actionList = rackList
     ?.map((rack) =>
-      rack?.crate
-        .map((crate) => crate.action && getFormattedCrateActions(crate))
-        .flat(),
+      rack.crate
+        ? rack.crate
+            .map(
+              (crate) =>
+                (crate.action && getFormattedCrateActions(crate)) || [],
+            )
+            .flat()
+        : [],
     )
     .flat();
 

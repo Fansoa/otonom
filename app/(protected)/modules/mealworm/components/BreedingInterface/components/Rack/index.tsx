@@ -3,10 +3,6 @@
 import { useState } from "react";
 
 import { useAuthContext } from "@/contexts/AuthContext/index.tsx";
-import {
-  useSelectedItemContext,
-  useSelectedItemDispatchContext,
-} from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
 import useCrateForm from "@/app/(protected)/modules/mealworm/hooks/useCrateForm/index.ts";
 
 import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
@@ -14,12 +10,12 @@ import Crate from "@/app/(protected)/modules/mealworm/components/BreedingInterfa
 
 import { RackProps } from "@/app/(protected)/modules/mealworm/components/BreedingInterface/types.ts";
 import DrawerForm from "@/components/DrawerForm/index.tsx";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 const Rack = ({ rack }: RackProps) => {
   const { supabaseClient } = useAuthContext();
-  const setSelectedItem = useSelectedItemDispatchContext();
-  const selectedItem = useSelectedItemContext();
   const [isOpen, setIsOpen] = useState(false);
+  const { selectedItem, setSelectedItem } = useMealwormStore((state) => state);
 
   const { onSubmit, methods } = useCrateForm({
     rack_id: rack.id,

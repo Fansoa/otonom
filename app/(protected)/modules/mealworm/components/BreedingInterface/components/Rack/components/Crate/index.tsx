@@ -1,11 +1,10 @@
 "use client";
 
-import { useSelectedItemContext } from "@/app/(protected)/modules/mealworm/contexts/SelectedItemAndSelectedItemDispatchContext/index.tsx";
-
 import { CrateProps } from "@/app/(protected)/modules/mealworm/components/BreedingInterface/types.ts";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 const Crate = ({ onClick, rackId, crateId }: CrateProps) => {
-  const selectedItem = useSelectedItemContext();
+  const { selectedItem } = useMealwormStore((state) => state);
 
   const isActive =
     selectedItem?.rackId === rackId && selectedItem?.crateId === crateId;

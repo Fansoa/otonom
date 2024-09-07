@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { MealwormStoreProvider } from "@/providers/mealworm-store-provider.tsx";
 
 const Inter = localFont({
   src: "../fonts/inter/InterVariable.woff2",
@@ -25,7 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${Inter.variable} h-full bg-white`}>
       <body className="h-full">
-        <main>{children}</main>
+        <main>
+          <MealwormStoreProvider>{children}</MealwormStoreProvider>
+        </main>
       </body>
     </html>
   );
