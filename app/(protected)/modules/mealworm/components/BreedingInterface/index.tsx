@@ -3,24 +3,24 @@
 import { memo, useState } from "react";
 
 import useAuth from "@/hooks/useAuth/index.ts";
-import { useRackListContext } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
 import useRackForm from "@/app/(protected)/modules/mealworm/hooks/useRackForm/index.ts";
 
 import LabelInputControlled from "@/components/LabelInputControlled/index.tsx";
 import RackSkeleton from "@/app/(protected)/modules/mealworm/components/BreedingInterface/components/Rack/RackSkeleton.tsx";
 import Rack from "@/app/(protected)/modules/mealworm/components/BreedingInterface/components/Rack/index.tsx";
 import DrawerForm from "@/components/DrawerForm/index.tsx";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 // eslint-disable-next-line react/display-name
 const BreedingInterface = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, supabaseClient } = useAuth();
-  const { rackList } = useRackListContext();
   const { methods, onSubmit } = useRackForm({
     user,
     supabaseClient,
     setIsOpen,
   });
+  const { rackList } = useMealwormStore((state) => state);
 
   if (!rackList) {
     return (

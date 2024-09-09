@@ -5,10 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import rackSchema from "@/app/(protected)/modules/mealworm/hooks/useRackForm/rackSchema.ts";
 import { addRack } from "@/services/mealworm/index.ts";
 
-import { useRackListContext } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 const useRackForm = ({ user, supabaseClient, setIsOpen }) => {
-  const { setRackList } = useRackListContext();
+  const { addRack: addRackToStore } = useMealwormStore((state) => state);
 
   const methods = useForm({
     resolver: zodResolver(rackSchema),
@@ -21,10 +21,8 @@ const useRackForm = ({ user, supabaseClient, setIsOpen }) => {
       }
       if (res.data) {
         console.log(res.data);
-        const newRackInList = res.data;
-        setRackList((pevRackList) => {
-          return [...pevRackList, ...newRackInList];
-        });
+        const newRackInList = res.data[0];
+        addRackToStore(newRackInList);
         setIsOpen((prev) => !prev);
       }
     });

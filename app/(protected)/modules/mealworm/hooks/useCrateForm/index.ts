@@ -3,11 +3,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addCrate } from "@/services/mealworm/index.ts";
-import { useRackListContext } from "@/app/(protected)/modules/mealworm/contexts/RackListContext/index.tsx";
 import crateSchema from "@/app/(protected)/modules/mealworm/hooks/useCrateForm/crateSchema.ts";
+import { useMealwormStore } from "@/providers/mealworm-store-provider.tsx";
 
 const useCrateForm = ({ rack_id, supabaseClient, setIsOpen }) => {
-  const { rackList, setRackList } = useRackListContext();
+  const { addCrate: addCrateToStore } = useMealwormStore((state) => state);
   const methods = useForm({
     resolver: zodResolver(crateSchema),
     defaultValues: {
@@ -24,17 +24,8 @@ const useCrateForm = ({ rack_id, supabaseClient, setIsOpen }) => {
       }
       if (res.data) {
         console.log(res.data);
-        const indexOfTheCrateOwnerRack = rackList.findIndex(
-          (item) => item.id === res.data[0].rack_id,
-        );
-        const newCrateList =
-          rackList[indexOfTheCrateOwnerRack].crate === undefined
-            ? [...res.data]
-            : [...rackList[indexOfTheCrateOwnerRack].crate, ...res.data];
 
-        const newRackList = [...rackList];
-        newRackList[indexOfTheCrateOwnerRack].crate = newCrateList;
-        setRackList(newRackList);
+        addCrateToStore(res.data);
         setIsOpen((prev) => !prev);
       }
     });
